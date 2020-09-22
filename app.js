@@ -1,14 +1,3 @@
-//////////////////////////////////////////////
-// Privious code
-// app.get('/', (req, res) => {
-//   res
-//     .status(200)
-//     .json({ message: 'Hello from the server side!', app: 'Natours' });
-// });
-
-// app.post('/', (req, res) => {
-//   res.send('You can now POST to this endpoint...');
-// });
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -18,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -84,6 +74,8 @@ app.use(
 //   console.log('Hello from the middleware 👍');
 //   next();
 // });
+
+app.use(compression());
 
 // Test Middleware.
 app.use((req, res, next) => {
